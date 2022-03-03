@@ -7,7 +7,9 @@
                 <h2>Edit Contact-</h2>
             </div>
             <div class="pull-right">
-                <a class="btn btn-primary" href="{{ route('contacts.index') }}" title="Go back"> <i class="fas fa-backward "></i> </a>
+                <a class="btn btn-primary" href="{{ route('contacts.index') }}" title="Go back">
+                Contacts
+                </a>
             </div>
         </div>
     </div>

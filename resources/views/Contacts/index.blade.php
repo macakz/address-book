@@ -21,7 +21,7 @@
 
     <table class="table table-bordered table-responsive-lg">
         <tr>
-            
+            <th>View / Edit</th>
             <th>Name</th>
             <th>Email</th>
             <th>Phone Number</th>
@@ -30,24 +30,22 @@
         </tr>
         @foreach ($contacts as $contact)
             <tr>
+                <td >
+                    <button onclick="window.location='{{ route('contacts.show', $contact->id) }}'" title="show" style="border: none; background-color:transparent;">
+                        <i class="fas fa-eye text-success  fa-lg"></i>
+                    </button>
+                    <button  onclick="window.location='{{ route('contacts.edit', $contact->id) }}'" style="border: none; background-color:transparent;">
+                        <i class="fas fa-edit  fa-lg"></i>
+                    </button>
+                </td>
                 <td>{{ $contact->name }}</td>
                 <td>{{ $contact->email }}</td>
                 <td>{{ $contact->phoneNumber }}</td>
                 <td>{{ $contact->dateOfBirth }}</td>
                 <td>{{ $contact->physicalAddress }}</td>
-                <td>{{ date_format($contact->created_at, 'jS M Y') }}</td>
                 <td>
+                    
                     <form action="{{ route('contacts.destroy', $contact->id) }}" method="POST">
-
-                        <a href="{{ route('contacts.show', $contact->id) }}" title="show">
-                            <i class="fas fa-eye text-success  fa-lg"></i>
-                        </a>
-
-                        <a href="{{ route('contacts.edit', $contact->id) }}">
-                            <i class="fas fa-edit  fa-lg"></i>
-
-                        </a>
-
                         @csrf
                         @method('DELETE')
 
