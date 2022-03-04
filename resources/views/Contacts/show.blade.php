@@ -5,7 +5,7 @@
     <div class="row ">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
-                <h2>{{ $contact->name }}</h2>
+                <h2>Address Book</h2>
             </div>
             <div class="pull-right">
                 <a class="btn btn-primary" href="{{ route('contacts.index') }}" title="Go back">
@@ -36,13 +36,13 @@
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Date of Birth</strong>
+                <strong>Date of Birth:</strong>
                 {{ $contact->dateOfBirth }}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Physical Address</strong>
+                <strong>Physical Address:</strong>
                 {{ $contact->physicalAddress }}
             </div>
         </div>

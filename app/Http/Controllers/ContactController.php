@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Contact;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class ContactController extends Controller
 {
@@ -39,10 +40,11 @@ class ContactController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required',
-            'email' => 'required',
-            'phoneNumber' => 'required',
-            'physicalAddress' => 'required'
+            'name' => 'required|max:255|unique:contacts,name',
+            'email' => 'required|email|unique:contacts,email',
+            'phoneNumber' => 'required|numeric',
+            'dateOfBirth' => 'date_format:d-m-Y|before:today|nullable',
+            'physicalAddress' => 'required|max:255'
         ]);
 
         Contact::create($request->all());
@@ -82,11 +84,13 @@ class ContactController extends Controller
      */
     public function update(Request $request, Contact $contact)
     {
+        // dd($contact->id);
         $request->validate([
-            'name' => 'required',
-            'email' => 'required',
-            'phoneNumber' => 'required',
-            'physicalAddress' => 'required'
+            'name' => 'required', Rule::unique('contacts', 'name')->ignore($contact->id),
+            'email' => 'required|email|', Rule::unique('contacts', 'email')->ignore($contact->id),
+            'phoneNumber' => 'required|numeric',
+            'dateOfBirth' => 'date_format:d-m-Y|before:today|nullable',
+            'physicalAddress' => 'required|max:255'
         ]);
         $contact->update($request->all());
 
